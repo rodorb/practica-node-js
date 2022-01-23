@@ -2,19 +2,18 @@
 const Mongoose = require('mongoose');
 
 const advertisementSchema = Mongoose.Schema({
-    name: { type: String },
-    forSale: { type: Boolean },
-    price: { type: Number },
+    name: { type: String, index: true },
+    forSale: { type: Boolean, index: true },
+    price: { type: Number, index: true },
     priceUnit: { type: String },
     photo: { type: String },
-    tags: [String]
+    tags: { type: [String], index: true }
 });
 
-advertisementSchema.statics.listar = function(filters, skip, limit, select, sortBy) {
+advertisementSchema.statics.listar = function(filters, skip, limit, sortBy) {
     const query = Advertisement.find(filters);
     query.skip(skip);
     query.limit(limit);
-    query.select(select);
     query.sort(sortBy);
     return query.exec();
 }

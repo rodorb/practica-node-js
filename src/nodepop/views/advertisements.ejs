@@ -30,7 +30,7 @@
                             <%= String(ad.price).replace('.', ',')+ad.priceUnit%>
                         </li>
                         <li>Foto:
-                            <%= ad.photo %>
+                            <a href="http://localhost:3000/images/anuncios/<%= ad.photo %>">http://localhost:3000/images/anuncios/<%= ad.photo %></a>
                         </li>
                         <li>Tags:
                             <%= ad.tags.join(', ') %>

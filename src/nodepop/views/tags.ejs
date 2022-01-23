@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <!-- simbolo "-" sirve para que interprete la variable
+    como si fuera código  ejemplo es un trozo de código ahora
+    y se inyecta en el html como tal, si se usa el "="
+    entonces lo trata como cadena de txto-->
+    <% tags.forEach((tag)=>{ %>
+
+        <ul>
+            <li>
+                <strong><%= tag %></strong>
+            </li>
+        </ul>
+        <% }) %>
+
+
+</body>
+
+</html>

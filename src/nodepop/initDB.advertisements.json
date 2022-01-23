@@ -20,6 +20,38 @@
                 "lifestyle",
                 "mobile"
             ]
+        },
+        {
+            "name": "Playstation 5",
+            "forSale": false,
+            "price": 500.00,
+            "priceUnit": "$",
+            "photo": "ps5.jpg",
+            "tags": [
+                "lifestyle"
+            ]
+        },
+        {
+            "name": "Impresora 3d",
+            "forSale": true,
+            "price": 689.00,
+            "priceUnit": "€",
+            "photo": "3dprinter.png",
+            "tags": [
+                "work",
+                "lifestyle"
+            ]
+        },
+        {
+            "name": "Router wifi",
+            "forSale": true,
+            "price": 49.00,
+            "priceUnit": "60€",
+            "photo": "router.jpg",
+            "tags": [
+                "work",
+                "lifestyle"
+            ]
         }
     ]
 }
