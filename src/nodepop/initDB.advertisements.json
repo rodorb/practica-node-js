@@ -1,0 +1,25 @@
+{
+    "anuncios": [{
+            "name": "Bicicleta",
+            "forSale": true,
+            "price": 230.15,
+            "priceUnit": "€",
+            "photo": "bici.jpg",
+            "tags": [
+                "lifestyle",
+                "motor"
+            ]
+        },
+        {
+            "name": "iPhone 3GS",
+            "forSale": false,
+            "price": 50.00,
+            "priceUnit": "$",
+            "photo": "iphone.jpg",
+            "tags": [
+                "lifestyle",
+                "mobile"
+            ]
+        }
+    ]
+}

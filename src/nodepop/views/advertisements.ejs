@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <h1>
+        <%= title %>
+    </h1>
+    <!-- simbolo "-" sirve para que interprete la variable
+    como si fuera código  ejemplo es un trozo de código ahora
+    y se inyecta en el html como tal, si se usa el "="
+    entonces lo trata como cadena de txto-->
+    <% addvertisements.forEach((ad)=>{ %>
+        <h3>
+            <%= ad.name %>
+        </h3>
+        <ul>
+            <% if(ad.forSale){ %>
+                <li>En venta</li>
+                <% }else{ %>
+                    <li>Se busca </li>
+                    <% } %>
+                        <li>Precio:
+                            <%= String(ad.price).replace('.', ',')+ad.priceUnit%>
+                        </li>
+                        <li>Foto:
+                            <%= ad.photo %>
+                        </li>
+                        <li>Tags:
+                            <%= ad.tags.join(', ') %>
+                        </li>
+        </ul>
+
+
+        <%  }) %>
+</body>
+
+</html>

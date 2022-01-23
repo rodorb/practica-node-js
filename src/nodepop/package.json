@@ -1,0 +1,25 @@
+{
+    "name": "nodepop",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www",
+        "start:dev": "cross-env DEBUG=nodeapp:* nodemon",
+        "eslint": "./node_modules/.bin/eslint --init",
+        "initdb": "node initDB.mjs"
+    },
+    "dependencies": {
+        "cookie-parser": "~1.4.4",
+        "cross-env": "^7.0.3",
+        "debug": "~2.6.9",
+        "ejs": "~2.6.1",
+        "express": "~4.16.1",
+        "express-validator": "^6.14.0",
+        "http-errors": "~1.6.3",
+        "mongoose": "^6.1.6",
+        "morgan": "~1.9.1"
+    },
+    "devDependencies": {
+        "eslint": "^8.7.0"
+    }
+}
