@@ -4,7 +4,7 @@ const Express = require('express');
 const CreateError = require('http-errors');
 const Advertisement = require('../../models/Advertisement.js');
 const Router = Express.Router();
-const POSSIBLE_TAGS = [' work', 'lifestyle', 'motor', 'mobile'];
+const POSSIBLE_TAGS = ['work', 'lifestyle', 'motor', 'mobile'];
 //DONE: (probar la pagicación)
 // Operaciones que debe realizar el API a crear:
 // - Lista de anuncios con posibilidad de paginación. Con filtros por tag, tipo de anuncio (venta o búsqueda), 
