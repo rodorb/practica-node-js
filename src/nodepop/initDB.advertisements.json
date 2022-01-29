@@ -46,7 +46,7 @@
             "name": "Router wifi",
             "forSale": true,
             "price": 49.00,
-            "priceUnit": "60€",
+            "priceUnit": "€",
             "photo": "router.jpg",
             "tags": [
                 "work",

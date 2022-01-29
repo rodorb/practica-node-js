@@ -1,0 +1,118 @@
+swagger: '2.0'
+info:
+  title: NodePop
+  version: 1.0.0
+paths:
+  /api/anuncios:
+    get:
+      tags:
+        - Listar anuncios
+      parameters:
+        - name: limit
+          in: query
+          description: Máximo número de resultados que se quieren obtener
+          required: false
+          type: integer
+        - name: start
+          in: query
+          description: Indica a partir de que índice se quieren empezar a mostrar los anuncios
+          required: false
+          type: integer
+        - name: name
+          in: query
+          description: Nombre del anuncio o anuncios que se quieren mostrar
+          required: false
+          type: string
+        - name: sort
+          in: query
+          description: Campo por el que se quiere ordenar la lista de anuncios
+          required: false
+          type: string
+        - name: tag
+          in: query
+          description: Tag por el que se quiere filtrar el listado de anuncios de forma que solo admita los que tienen el tag indicado
+          required: false
+          type: string
+        - name: forSale
+          in: query
+          description: Filtro para mostrar los anuncios que sean de venta o no
+          required: false
+          type: boolean
+        - name: price
+          in: query
+          description: Precio o rango de precios por los que se quiere filtrar la lsita de anuncios
+          required: false
+          type: string
+      summary: Lista todos los anuncios asociados cada uno a un producto diferente
+      responses:
+        '200':
+          description: Renderiza una vista con una lista de todos los anuncios disponibles con todas sus propiedades, admite filtrado según los queryparams que se indiquen así como paginación para acotar el número de anuncios que se quieren renderizar en la vista.
+        '500':
+          description: Server Error
+  /api/anuncios/tags:
+    get:
+      tags:
+        - Listar tags
+      summary: Lista todos los tags que pueden pertenecer al anuncio de un producto
+      responses:
+        '200':
+          description: Renderiza una vista con una lista de todos los tags disponibles para un anuncio.
+        '500':
+          description: Server Error
+  /api/anuncios/createAd:
+    post:
+      tags:
+        - Crear un anuncio
+      summary: Crea un anuncio
+      parameters:
+        - in: body
+          name: body
+          required: true
+          description: Parametros necesarios para crear un anuncio
+          schema:
+            $ref: '#/definitions/Anuncio'
+      responses:
+        '200':
+          description: Responde un json con el objeto del anuncio creado
+          schema:
+            $ref: '#/definitions/Anuncio'
+        '400':
+          description: Bad Request
+        '422':
+          description: Unprocessable Entity
+        '500':
+          description: Server Error
+definitions:
+  Anuncio:
+    type: object
+    required:
+      - name
+      - forSale
+      - price
+      - priceUnit
+      - photo
+      - tags
+    properties:
+      name:
+        type: string
+        description: Nombre del producto anunciado
+      forSale:
+        type: boolean
+        description: Indica si el producto anunciado esta en venta o no
+      price:
+        type: integer
+        description: Precio del producto anunciado
+      priceUnit:
+        type: string
+        description: Unidad de precio del producto anunciado
+      photo:
+        type: string
+        description: Imagen del producto anunciado
+      tags:
+        type: array
+        description: Etiquetas del producto anunciado
+        items:
+          type: string
+schemes:
+  - https
+  - http
