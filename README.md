@@ -34,3 +34,7 @@ Ordenación:
 Crear un agente:
 - /api/anuncios/createAd
 
+
+
+Consultar documentación API (Swagger)
+- /api/docs
