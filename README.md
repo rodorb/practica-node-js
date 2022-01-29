@@ -38,3 +38,5 @@ Crear un agente:
 
 Consultar documentación API (Swagger)
 - /api/docs
+
+Se añade en la raíz del proyecto el archivo practica-nodejs.postman_collection.json para poder probar el post.
