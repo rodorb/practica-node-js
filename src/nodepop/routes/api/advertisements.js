@@ -4,7 +4,7 @@ const Express = require('express');
 const CreateError = require('http-errors');
 const Advertisement = require('../../models/Advertisement.js');
 const Router = Express.Router();
-const { query, body, param, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator');
 const POSSIBLE_TAGS = ['work', 'lifestyle', 'motor', 'mobile'];
 
 Router.get('/', async(request, response, next) => {
@@ -42,7 +42,7 @@ Router.get('/', async(request, response, next) => {
 
 
 
-
+// eslint-disable-next-line
 Router.get('/tags', (request, response, next) => {
     response.locals.title = 'Tags admitidos'
     response.locals.tags = POSSIBLE_TAGS;
@@ -105,7 +105,7 @@ function isValidBody(body) {
     const AdvertisementModelKeys = {...Advertisement.schema.paths };
     for (const key in AdvertisementModelKeys) {
         if (key !== '_id' && key !== '__v') {
-            if (body.hasOwnProperty(key)) {
+            if (Object.prototype.hasOwnProperty.call(body, key)) {
                 const checkArray = AdvertisementModelKeys[key].instance === 'Array';
                 const isValidArrayProperty = checkArray && Array.isArray(body[key]);
                 const isValidNonArrayProperty = !checkArray && typeof body[key] === AdvertisementModelKeys[key].instance.toLowerCase();

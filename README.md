@@ -40,3 +40,6 @@ Consultar documentación API (Swagger)
 - /api/docs
 
 Se añade en la raíz del proyecto el archivo practica-nodejs.postman_collection.json para poder probar el post.
+
+
+******* En la rama feature-upload-file-and-others se añade funcionalidad para subir archivos *******
