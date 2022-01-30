@@ -39,4 +39,6 @@ Crear un agente:
 Consultar documentación API (Swagger)
 - /api/docs
 
+Se añade la opción para subir un archivo de imágen al servidor, usando multer.
 Se añade en la raíz del proyecto el archivo practica-nodejs.postman_collection.json para poder probar el post.
+Se modifica la colección de Postman para que sea tipo form-data y se pueda añadir un archivo

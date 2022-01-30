@@ -5,6 +5,17 @@ const CreateError = require('http-errors');
 const Advertisement = require('../../models/Advertisement.js');
 const Router = Express.Router();
 const { query, body, param, validationResult } = require('express-validator');
+const Multer = require('multer');
+const MulterStorage = Multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "public/images/anuncios");
+    },
+    filename: (req, file, cb) => {
+        //   const ext = file.mimetype.split("/")[1];
+        cb(null, `${file.originalname}`);
+    },
+});
+const Upload = Multer({ storage: MulterStorage })
 const POSSIBLE_TAGS = ['work', 'lifestyle', 'motor', 'mobile'];
 
 Router.get('/', async(request, response, next) => {
@@ -50,8 +61,11 @@ Router.get('/tags', (request, response, next) => {
 }); // DONE: - Lista de tags existentes
 
 
+//TODO: COmo usar el MDW de multer para coger del body el archivo de la imagen???
 Router.post('/createAd', [
-        body().custom((wholeBody) => { return isValidBody(wholeBody) }).withMessage(`You need to include all obligatory properties with their corresponding correct types!`),
+        Upload.single('photo'),
+        body().custom(function(wholeBody) { return isValidBody(wholeBody) }).withMessage(`You need to include all obligatory properties with their corresponding correct types!`)
+
     ],
     async(request, response, next) => {
         try {
@@ -61,6 +75,7 @@ Router.post('/createAd', [
             if (validTags && validTags.length > 0) {
                 const AD_DATA_CLONE = {...AD_DATA };
                 AD_DATA_CLONE.tags = validTags;
+                parseBody(AD_DATA_CLONE, request.file)
                 const AD = new Advertisement(AD_DATA_CLONE);
                 const SAVED_AD = await AD.save();
                 response.status(201).json(SAVED_AD);
@@ -100,15 +115,36 @@ function filterValidTags(tags) {
     return VALID_TAGS;
 }
 
+function parseBody(body, file) {
+
+    const AdvertisementModelKeys = {...Advertisement.schema.paths };
+    for (const key in AdvertisementModelKeys) {
+        if (key !== '_id' && key !== '__v' && key !== 'photo') {
+            if (body.hasOwnProperty(key)) {
+                const checkArray = AdvertisementModelKeys[key].instance === 'Array';
+                const checkString = AdvertisementModelKeys[key].instance === 'String';
+                body[key] = checkString || checkArray ? body[key] : JSON.parse(body[key]);
+            }
+        } else if (key === 'photo') {
+            body[key] = file.filename;
+        }
+    }
+}
+
+
 function isValidBody(body) {
+    const bodyClone = {...body };
+
     let valid = true;
     const AdvertisementModelKeys = {...Advertisement.schema.paths };
     for (const key in AdvertisementModelKeys) {
-        if (key !== '_id' && key !== '__v') {
-            if (body.hasOwnProperty(key)) {
+        if (key !== '_id' && key !== '__v' && key !== 'photo') {
+            if (bodyClone.hasOwnProperty(key)) {
                 const checkArray = AdvertisementModelKeys[key].instance === 'Array';
-                const isValidArrayProperty = checkArray && Array.isArray(body[key]);
-                const isValidNonArrayProperty = !checkArray && typeof body[key] === AdvertisementModelKeys[key].instance.toLowerCase();
+                const checkString = AdvertisementModelKeys[key].instance === 'String';
+                bodyClone[key] = checkString || checkArray ? bodyClone[key] : JSON.parse(bodyClone[key]);
+                const isValidArrayProperty = checkArray && Array.isArray(bodyClone[key]);
+                const isValidNonArrayProperty = !checkArray && typeof bodyClone[key] === AdvertisementModelKeys[key].instance.toLowerCase();
                 if (!isValidArrayProperty && !isValidNonArrayProperty) {
                     valid = false;
                     break;

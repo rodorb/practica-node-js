@@ -1,78 +1,112 @@
 {
-	"info": {
-		"_postman_id": "d8488845-8881-4c16-83a2-7247ed7c1615",
-		"name": "API anuncios Express practica-nodejs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "/api/anuncios",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:3000/api/anuncios",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"anuncios"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/api/agentes/createAd",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Nintendo Switch\",\r\n    \"forSale\": false,\r\n    \"price\": 250.00,\r\n    \"priceUnit\": \"€\",\r\n    \"photo\": \"switch.jpg\",\r\n    \"tags\": [ \"lifestyle\" , \"work\"  ]\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "localhost:3000/api/anuncios/createAd",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"anuncios",
-						"createAd"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/api/anuncios/tags",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/api/anuncios/tags",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"api",
-						"anuncios",
-						"tags"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+    "info": {
+        "_postman_id": "d8488845-8881-4c16-83a2-7247ed7c1615",
+        "name": "API anuncios Express practica-nodejs",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [{
+            "name": "/api/anuncios",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "localhost:3000/api/anuncios",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "api",
+                        "anuncios"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "/api/agentes/createAd",
+            "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                    "mode": "formdata",
+                    "formdata": [{
+                            "key": "name",
+                            "value": "Other",
+                            "type": "default"
+                        },
+                        {
+                            "key": "forSale",
+                            "value": "true",
+                            "type": "default"
+                        },
+                        {
+                            "key": "price",
+                            "value": "999999",
+                            "type": "default"
+                        },
+                        {
+                            "key": "photo",
+                            "type": "file",
+                            "src": "/D:/r/Downloads/Images/test.png"
+                        },
+                        {
+                            "key": "tags",
+                            "value": "lifestyle",
+                            "type": "default"
+                        },
+                        {
+                            "key": "tags",
+                            "value": "work",
+                            "type": "default"
+                        },
+                        {
+                            "key": "priceUnit",
+                            "value": "$",
+                            "type": "default"
+                        }
+                    ],
+                    "options": {
+                        "raw": {
+                            "language": "json"
+                        }
+                    }
+                },
+                "url": {
+                    "raw": "localhost:3000/api/anuncios/createAd",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "api",
+                        "anuncios",
+                        "createAd"
+                    ]
+                }
+            },
+            "response": []
+        },
+        {
+            "name": "http://localhost:3000/api/anuncios/tags",
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:3000/api/anuncios/tags",
+                    "protocol": "http",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                        "api",
+                        "anuncios",
+                        "tags"
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
 }
