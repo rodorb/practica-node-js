@@ -30,6 +30,8 @@ Filtro por precio (con precio igual a 50):
 Ordenación:
 - localhost:3000/api/anuncios?sort=price
 
+Lista de tags:
+- /api/anuncios/tags
 
 Crear un agente:
 - /api/anuncios/createAd
