@@ -1,9 +1,12 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const loginController = require('./controllers/loginController.js');
+const jwtAuthMdw = require('./lib/jwtAuthMiddleware.js');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const addvertisementsRouter = require('./routes/api/advertisements.js');
@@ -24,10 +27,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.get('/login', loginController.index);
+app.post('/login', loginController.postJWT);
+app.get('/logout', loginController.logout);
+app.post('/api/authenticate', loginController.postJWT);
 //rutas
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/api/anuncios', addvertisementsRouter);
+// app.use('/', indexRouter);
+// app.use('/users', usersRouter);
+app.use('/api/anuncios', jwtAuthMdw, addvertisementsRouter);
 app.use('/api/docs', docAPI);
 
 // catch 404 and forward to error handler
