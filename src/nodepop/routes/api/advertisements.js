@@ -38,7 +38,7 @@ Router.get('/', async(request, response, next) => {
         }
         setPriceFilter(queryParams, filters);
         const addvertisements = await Advertisement.listar(filters, skip, limit, sortBy);
-        response.locals.title = 'Lista de anuncios'
+        response.locals.title = response.__('Advertisements list')
         response.locals.addvertisements = addvertisements;
         response.render('advertisements');
         // response.json({ anuncios: addvertisements });

@@ -1,44 +1,50 @@
-<!DOCTYPE html>
-<html>
+<% include header.ejs %>
+    <!-- Mashead header-->
+    <header class="masthead">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <!-- Mashead text and app badges-->
+                    <div class="mb-5 mb-lg-0 text-center text-lg-start">
 
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <h1>
-        <%= title %>
-    </h1>
-    <!-- simbolo "-" sirve para que interprete la variable
+                        <h1>
+                            <%= title %>
+                        </h1>
+                        <!-- simbolo "-" sirve para que interprete la variable
     como si fuera código  ejemplo es un trozo de código ahora
     y se inyecta en el html como tal, si se usa el "="
     entonces lo trata como cadena de txto-->
-    <% addvertisements.forEach((ad)=>{ %>
-        <h3>
-            <%= ad.name %>
-        </h3>
-        <ul>
-            <% if(ad.forSale){ %>
-                <li>En venta</li>
-                <% }else{ %>
-                    <li>Se busca </li>
-                    <% } %>
-                        <li>Precio:
-                            <%= String(ad.price).replace('.', ',')+ad.priceUnit%>
-                        </li>
-                        <li>Foto:
-                            <a href="http://localhost:3000/images/anuncios/<%= ad.photo %>">http://localhost:3000/images/anuncios/<%= ad.photo %></a>
-                        </li>
-                        <li>Tags:
-                            <%= ad.tags.join(', ') %>
-                        </li>
-        </ul>
+                        <% addvertisements.forEach((ad)=>{ %>
+                            <h3>
+                                <%= ad.name %>
+                            </h3>
+                            <ul>
+                                <% if(ad.forSale){ %>
+                                    <li>
+                                        <%= __('For sale') %>
+                                    </li>
+                                    <% }else{ %>
+                                        <li>
+                                            <%= __('Searching for') %>
+                                        </li>
+                                        <% } %>
+                                            <li>Precio:
+                                                <%= String(ad.price).replace('.', ',')+ad.priceUnit%>
+                                            </li>
+                                            <li>
+                                                <%= __('Photo') %>:
+                                                    <a href="http://localhost:3000/images/anuncios/<%= ad.photo %>">http://localhost:3000/images/anuncios/<%= ad.photo %></a>
+                                            </li>
+                                            <li>
+                                                <%= __('Tags') %>:
+                                                    <%= ad.tags.join(', ') %>
+                                            </li>
+                            </ul>
 
 
-        <%  }) %>
-</body>
-
-</html>
+                            <%  }) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>

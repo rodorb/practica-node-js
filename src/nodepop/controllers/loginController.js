@@ -33,7 +33,6 @@ class LoginController {
                     return;
                 }
                 //devuelve el JWT
-                // response.json({ token: jwtToken });
                 //si lo encuentro y la contraseña coincide --> redirigir a la zona privada
                 response.cookie('Authorization', jwtToken, {
                     maxAge: 1000 * 60 * 60 * 24 //un dia
@@ -48,7 +47,6 @@ class LoginController {
 
     logout(request, response, next) {
         response.clearCookie('Authorization').status(302).redirect('/login');
-
     }
 
 }

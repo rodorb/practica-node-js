@@ -4,6 +4,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const i18n = require('./lib/i18nConfigure')
+
 
 const loginController = require('./controllers/loginController.js');
 const jwtAuthMdw = require('./lib/jwtAuthMiddleware.js');
@@ -17,15 +19,21 @@ var app = express();
 
 require('./lib/connectMongoose');
 
+// Setup de i18n
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.locals.pageTitle = 'NodePop';
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api', express.static(path.join(__dirname, 'public')));
+//IMPORTANTE EL ORDEN DE ESTE MDW
+app.use(i18n.init);
 
 
 app.get('/login', loginController.index);
@@ -33,8 +41,13 @@ app.post('/login', loginController.postJWT);
 app.get('/logout', loginController.logout);
 app.post('/api/authenticate', loginController.postJWT);
 //rutas
-// app.use('/', indexRouter);
+app.use('/', indexRouter);
+app.all('*', function(req, res, next) {
+    app.locals.isUserLogged = req.headers.cookie.replace(/\s/g, '').indexOf('Authorization') > -1;
+    next();
+});
 // app.use('/users', usersRouter);
+app.use('/change-locale', require('./routes/change-locale'));
 app.use('/api/anuncios', jwtAuthMdw, addvertisementsRouter);
 app.use('/api/docs', docAPI);
 
