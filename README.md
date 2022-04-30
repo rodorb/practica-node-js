@@ -6,6 +6,19 @@ Para inicializar la BBDD, ejecutar el script: npm run initdb
 
 Para arrancar la aplicación, ejecutar el script: npm run start o npm start
 Para arrancar la apicación en modo developer, ejecutar el script: npm run start:dev
+Also you can use PM2 to run all services:
+
+```sh
+pm2 start ecosystem.config.js
+```
+Or run script 
+```sh
+npm run start:pm2
+```
+To kill processes
+```sh
+npm run kill-pm2
+```
 
 Lista de anuncios:
 - localhost:3000/api/anuncios
