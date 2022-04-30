@@ -1,14 +1,15 @@
 {
-	"Advertisements list": "Advertisements list",
-	"For sale": "For sale",
-	"Searching for": "Searching for",
-	"Photo": "Photo",
-	"Tags": "Tags",
-	"Login": "Login",
-	"Email address": "Email address",
-	"We will never share your email with anyone else": "We'll never share your email with anyone else.",
-	"Submit": "Submit",
-	"Password": "Password",
-	"Advertisements": "Advertisements",
-	"Logout": "Logout"
+    "Advertisements list": "Advertisements list",
+    "For sale": "For sale",
+    "Searching for": "Searching for",
+    "Photo": "Photo",
+    "Tags": "Tags",
+    "Login": "Login",
+    "Email address": "Email address",
+    "We will never share your email with anyone else": "We'll never share your email with anyone else.",
+    "Submit": "Submit",
+    "Password": "Password",
+    "Advertisements": "Advertisements",
+    "Logout": "Logout",
+    "Welcome to": "Welcome to"
 }

@@ -1,14 +1,15 @@
 {
-	"Advertisements list": "Lista de anuncios",
-	"For sale": "En venta",
-	"Searching for": "Se busca",
-	"Photo": "Foto",
-	"Tags": "Etiquetas",
-	"Login": "Iniciar sesion",
-	"Email address": "Cuenta de correo",
-	"We will never share your email with anyone else": "Nunca compartiremos tu mail con nadie.",
-	"Submit": "Acceder",
-	"Password": "Contraseña",
-	"Advertisements": "Anuncios",
-	"Logout": "Logout"
+    "Advertisements list": "Lista de anuncios",
+    "For sale": "En venta",
+    "Searching for": "Se busca",
+    "Photo": "Foto",
+    "Tags": "Etiquetas",
+    "Login": "Iniciar sesion",
+    "Email address": "Cuenta de correo",
+    "We will never share your email with anyone else": "Nunca compartiremos tu mail con nadie.",
+    "Submit": "Acceder",
+    "Password": "Contraseña",
+    "Advertisements": "Anuncios",
+    "Logout": "Cerrar sesion",
+    "Welcome to": "Bienvenido a"
 }

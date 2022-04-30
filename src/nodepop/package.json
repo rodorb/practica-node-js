@@ -5,6 +5,8 @@
     "scripts": {
         "start": "node ./bin/www",
         "start:dev": "cross-env DEBUG=nodeapp:* nodemon",
+        "start:pm2": "pm2 start ecosystem.config.js",
+        "kill-pm2": "pm2 kill",
         "eslint": "./node_modules/.bin/eslint --init",
         "initdb": "node initDB.mjs"
     },
@@ -29,6 +31,7 @@
         "swagger-ui-express": "^4.3.0"
     },
     "devDependencies": {
-        "eslint": "^8.7.0"
+        "eslint": "^8.7.0",
+        "pm2": "^5.2.0"
     }
 }
