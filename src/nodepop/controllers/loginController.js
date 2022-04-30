@@ -45,6 +45,36 @@ class LoginController {
 
     }
 
+    async postResponseJWT(request, response, next) {
+        try {
+            const { email, password } = request.body;
+            //buscar el usuario en BBDD
+            const user = await User.findOne({ email });
+            //si no lo encuentro o no coincide la contraseña (comparandolo con bCrypt)--> error
+            if (!user || !(await user.comparePassword(password))) {
+                response.json({ error: 'Invalid credentials' });
+                return;
+            }
+            //generamos un JWT con su _id
+            //payload                   , secret            , objeto opciones
+            jwt.sign({ _id: user.id }, process.env.JWT_SECRET, {
+                expiresIn: "2d"
+            }, (error, jwtToken) => {
+                if (error) {
+                    next(error);
+                    return;
+                }
+                //devuelve el JWT
+                //si lo encuentro y la contraseña coincide --> redirigir a la zona privada
+                response.json({ token: jwtToken });
+            });
+
+        } catch (error) {
+            next(error);
+        }
+
+    }
+
     logout(request, response, next) {
         response.clearCookie('Authorization').status(302).redirect('/login');
     }

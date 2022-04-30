@@ -31,8 +31,16 @@
                     <%= locale %>
                 </a>&nbsp;
                 <% }) %>
+
+
+                    <a href="/api/anuncios" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
+                        <span class="d-flex align-items-center">
+                            <span class="small"><%= __('Advertisements') %></span>
+                        </span>
+                    </a>
+
                     <% if ( isUserLogged ) { %>
-                        <a href="logout" class="btn rounded-pill px-3 mb-2 mb-lg-0">
+                        <a href="localhost:3000/logout" class="btn rounded-pill px-3 mb-2 mb-lg-0">
                             <span class="d-flex align-items-center">
                           <span class="small"><%= __('Logout') %></span>
                             </span>
@@ -45,15 +53,8 @@
                             </a>
                             <% } %>
 
-                                <a href="/api/anuncios" class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0">
-                                    <span class="d-flex align-items-center">
-                      <span class="small"><%= __('Advertisements') %></span>
-                                    </span>
-                                </a>
-                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="bi-list"></i>
-                </button>
+
+
 
         </div>
     </nav>

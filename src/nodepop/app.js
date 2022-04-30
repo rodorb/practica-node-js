@@ -31,21 +31,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/api', express.static(path.join(__dirname, 'public')));
 //IMPORTANTE EL ORDEN DE ESTE MDW
 app.use(i18n.init);
 
-
+app.use(function(req, res, next) {
+    app.locals.isUserLogged = req && req.headers && req.headers.cookie ? req.headers.cookie.replace(/\s/g, '').indexOf('Authorization') > -1 : null;
+    next();
+});
 app.get('/login', loginController.index);
 app.post('/login', loginController.postJWT);
 app.get('/logout', loginController.logout);
-app.post('/api/authenticate', loginController.postJWT);
+app.post('/api/authenticate', loginController.postResponseJWT);
 //rutas
 app.use('/', indexRouter);
-app.all('*', function(req, res, next) {
-    app.locals.isUserLogged = req.headers.cookie.replace(/\s/g, '').indexOf('Authorization') > -1;
-    next();
-});
+// app.all('*', function(req, res, next) {
+//     app.locals.isUserLogged = req.headers.cookie.replace(/\s/g, '').indexOf('Authorization') > -1;
+//     next();
+// });
 // app.use('/users', usersRouter);
 app.use('/change-locale', require('./routes/change-locale'));
 app.use('/api/anuncios', jwtAuthMdw, addvertisementsRouter);

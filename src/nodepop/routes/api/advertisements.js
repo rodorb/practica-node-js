@@ -39,7 +39,7 @@ Router.get('/', async(request, response, next) => {
         setPriceFilter(queryParams, filters);
         const addvertisements = await Advertisement.listar(filters, skip, limit, sortBy);
         response.locals.title = response.__('Advertisements list')
-        response.locals.addvertisements = addvertisements;
+        response.locals.addvertisements = addvertisements.map((ad) => { return {...ad._doc, thumbnail: ad.photo.split('.')[0] + '-thumbnail' + ad.photo.substring(ad.photo.indexOf('.')) } });
         response.render('advertisements');
         // response.json({ anuncios: addvertisements });
     } catch (error) {
@@ -78,6 +78,7 @@ Router.post('/createAd', [
                 parseBody(AD_DATA_CLONE, request.file)
                 const AD = new Advertisement(AD_DATA_CLONE);
                 const SAVED_AD = await AD.save();
+                AD.resizeImage(request.file.filename, request.file.destination);
                 response.status(201).json(SAVED_AD);
             } else {
                 next(CreateError(422, `You must insert at least one valid tag to create a product advertisement, all possible tags are : ${JSON.stringify(POSSIBLE_TAGS)}. You can also see check valid tags in ${request.protocol}://${request.get('host')}/api/anuncios/tags`));

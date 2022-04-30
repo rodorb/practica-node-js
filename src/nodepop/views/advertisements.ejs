@@ -1,3 +1,4 @@
+<link href="/css/styles.css" rel="stylesheet" type="text/css">
 <% include header.ejs %>
     <!-- Mashead header-->
     <header class="masthead">
@@ -29,11 +30,14 @@
                                         </li>
                                         <% } %>
                                             <li>Precio:
-                                                <%= String(ad.price).replace('.', ',')+ad.priceUnit%>
+                                                <%= String(ad.price).replace('.', ',')+ad.priceUnit %>
                                             </li>
                                             <li>
                                                 <%= __('Photo') %>:
                                                     <a href="http://localhost:3000/images/anuncios/<%= ad.photo %>">http://localhost:3000/images/anuncios/<%= ad.photo %></a>
+                                            </li>
+                                            <li>
+                                                <img src="http://localhost:3000/images/anuncios/<%= ad.thumbnail %>">
                                             </li>
                                             <li>
                                                 <%= __('Tags') %>:
