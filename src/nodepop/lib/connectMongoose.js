@@ -1,6 +1,6 @@
 'use strict';
 const Mongoose = require('mongoose');
-const databaseUri = proces.env.DATABASE_URI || 'mongodb://localhost/practicanode'
+const databaseUri = process.env.DATABASE_URI || 'mongodb://localhost/practicanode'
 Mongoose.connection.on('error', (error) => {
     console.error(`Error de conexión a MongoDB: ${error}`);
     process.exit(1);
