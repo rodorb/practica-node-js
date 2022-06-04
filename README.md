@@ -59,6 +59,8 @@ Se modifica la colección de Postman para que sea tipo form-data y se pueda aña
 ---
 ---
 URL Practica configuracion de servidores y despliegue de aplicaciones
+---
+---
 ```sh
 Ejercicio 1
 http://ec2-3-223-70-0.compute-1.amazonaws.com/
@@ -67,5 +69,12 @@ http://ec2-3-223-70-0.compute-1.amazonaws.com/
 Ejercicio 2
 http://3.223.70.0/
 ```
+---
+En la misma página de inicio del ejercicio 1, se sirve un archivo styles.css con la cabecera requerida.
+Sin embargo, si se quiere pasar el login, un usuario de ejemplo sería
+```sh
+email: user@example.com
+password: 1234
+````  
 ---
 ---
